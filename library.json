@@ -17,6 +17,6 @@
       }      
     ],
     "license": "Apache2.0",    
-    "frameworks": "arduino",
-    "platforms": "atmelmegaavr"
+    "frameworks": ["Arduino"],
+    "platforms": ["atmelmegaavr"]
   }
