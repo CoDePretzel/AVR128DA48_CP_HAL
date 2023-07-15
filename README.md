@@ -7,13 +7,23 @@ Basada en la estructura sugerida para las [Custom Libraries](https://docs.platfo
 
 ```
 ├── ejemplos
-│   └── echo
+│   └── simple_loopback
 ├── include
-│   └── HelloWorld.h
+│   └── UART.h
 ├── library.json
-└── src
-    └── HelloWorld.cpp
+
 ```
+Los archivos dentro de `include` son todos publicos para incluirse desde la aplicación.
+Aquellos con extensión `.h` y `.c` son C puro, así como los  `.hpp` y `.cpp` son basados en C++.
+
+NOTA: Si incluyen cabeceras C en un programa en C++ es importante poner la guarda
+```
+ºextern "C"
+{
+#include ...
+}
+```
+
 ## Pre-requisitos
 
 - Platformio IDE / Home (3.4.4+) o Platformio CLI / Core (6.1.9+)
