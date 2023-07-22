@@ -4,6 +4,13 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#ifdef CLK_FREQ
+#define CLK_FREQ 4000000L
+#endif
+
+uint8_t const USART_NORMAL_MODE = 16;
+uint8_t const USART_CLK2X_MODE = 8;
+
 typedef struct
 {
     uint8_t number;
@@ -12,14 +19,14 @@ typedef struct
     uint8_t data_bits;
     uint8_t stop_bits;
     bool enable_rx_interrupt;
-}UART_PARAMS;
+}UART_DATA;
 
-const UART_PARAMS UART0_DEFAULT_VALUES = {0, 115200, false, 8, 1, true};
+const UART_DATA UART0_DEFAULT_VALUES = {0, 115200, false, 8, 1, true};
 
 
-void UART_init(UART_PARAMS * uart_peripheral);
-void UART_putchar(UART_PARAMS * uart_peripheral, uint8_t outgoing_char);
-uint8_t UART_getchar(UART_PARAMS * uart_peripheral);
+void UART_init(UART_DATA * uart_peripheral);
+void UART_putchar(UART_DATA * uart_peripheral, uint8_t outgoing_char);
+uint8_t UART_getchar(UART_DATA * uart_peripheral);
 
 // To use 
 typedef void (*isr_function_pointer)(void);
