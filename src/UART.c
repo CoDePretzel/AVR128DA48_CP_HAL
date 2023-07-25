@@ -3,15 +3,12 @@
 
 void UART_init(UART_DATA_t * uart_peripheral)
 {        
-    //USART0 = 0x0800, start of USART memory mapped registers
-    uint8_t * uart_periph_offset = (uint8_t*) 0x20; // Every 0x20, the next USART starts    
-
     bool enable_rx_int = false;
     if(uart_peripheral->enable_rx_interrupt)
     {
         enable_rx_int = true;
     }    
-    USART_t * USARTxREGS = USART0 + (uart_periph_offset * (uint8_t *)uart_peripheral->number);
+    USART_t * USARTxREGS = (USART_t *) USART_BASE_ADDR + (USART_PERIPH_OFFSET * uart_peripheral->number);
     USARTxREGS->BAUD = getScaledBaudRate(uart_peripheral->baud_rate);
 }
 
