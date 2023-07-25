@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#ifdef CLK_FREQ
+#ifndef CLK_FREQ
 #define CLK_FREQ 4000000UL
 #endif
 

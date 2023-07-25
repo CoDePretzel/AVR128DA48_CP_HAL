@@ -1,6 +1,6 @@
 {
     "name": "AVR128DA48_HAL_CodePretzel",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Platformio package conteniendo un HAL de periféricos para el AVR128DA48 usando el soporte de avr-libc provisto por dxcore SpenceKonde, listo para usarse con lib_deps en platformio.ini",
     "keywords": "avr128da48, hal, esp-mx, español, comunidad-tech, no-arduino-hal",
     "repository":
