@@ -5,12 +5,10 @@
 #include <stdbool.h>
 
 #ifdef CLK_FREQ
-#define CLK_FREQ 4000000L
+#define CLK_FREQ 4000000UL
 #endif
 
-uint8_t const USART_NORMAL_MODE = 16;
-uint8_t const USART_CLK2X_MODE = 8;
-
+// Public elements
 typedef struct
 {
     uint8_t number;
@@ -19,14 +17,29 @@ typedef struct
     uint8_t data_bits;
     uint8_t stop_bits;
     bool enable_rx_interrupt;
-}UART_DATA;
+}UART_DATA_t;
 
-const UART_DATA UART0_DEFAULT_VALUES = {0, 115200, false, 8, 1, true};
+const UART_DATA_t UART0_DEFAULT_VALUES = {0, 115200, false, 8, 1, true};
 
 
-void UART_init(UART_DATA * uart_peripheral);
-void UART_putchar(UART_DATA * uart_peripheral, uint8_t outgoing_char);
-uint8_t UART_getchar(UART_DATA * uart_peripheral);
+// Private declarations and prototypes
+
+static uint8_t const USART_NORMAL_MODE = 16;
+static uint8_t const USART_CLK2X_MODE = 8;
+static uint8_t const USART_ASYNC_MODE = 64;
+
+static inline uint16_t getScaledBaudRate(uint32_t baud_rate)
+{
+    float scaled_baud = USART_ASYNC_MODE*CLK_FREQ / (USART_NORMAL_MODE*baud_rate);
+    scaled_baud += 0.5;
+    return (uint16_t) scaled_baud;
+}
+
+uint16_t public_getScaledBaudRate(uint32_t baud_rate);
+
+void UART_init(UART_DATA_t * uart_peripheral);
+void UART_putchar(UART_DATA_t * uart_peripheral, uint8_t outgoing_char);
+uint8_t UART_getchar(UART_DATA_t * uart_peripheral);
 
 // To use 
 typedef void (*isr_function_pointer)(void);
