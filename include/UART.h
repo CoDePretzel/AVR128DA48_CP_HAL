@@ -41,6 +41,7 @@ uint16_t public_getScaledBaudRate(uint32_t baud_rate);
 void UART_init(UART_DATA_t * uart_peripheral);
 void UART_putchar(UART_DATA_t * uart_peripheral, uint8_t outgoing_char);
 uint8_t UART_getchar(UART_DATA_t * uart_peripheral);
+void USART1_sendChar(char c);
 
 // To use 
 typedef void (*isr_function_pointer)(void);

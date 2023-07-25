@@ -18,3 +18,13 @@ uint16_t public_getScaledBaudRate(uint32_t baud_rate)
     scaled_baud += 0.5;
     return (uint16_t) scaled_baud;
 }
+
+// Basado en TB3216-Getting-Started-with-USART-DS90003216
+void USART1_sendChar(char c)
+{
+    while (!(USART1.STATUS & USART_DREIF_bm))
+    {
+        ;
+    } 
+    USART1.TXDATAL = c;
+}
