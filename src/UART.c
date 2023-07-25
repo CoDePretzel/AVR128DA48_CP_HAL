@@ -1,15 +1,16 @@
 #include <avr/io.h>
 #include <UART.h>
 
-void UART_init(UART_DATA_t * uart_peripheral)
+void UART_Init(UART_DATA_t * uart_peripheral)
 {        
     bool enable_rx_int = false;
     if(uart_peripheral->enable_rx_interrupt)
     {
         enable_rx_int = true;
     }    
-    USART_t * USARTxREGS = (USART_t *) USART_BASE_ADDR + (USART_PERIPH_OFFSET * uart_peripheral->number);
-    USARTxREGS->BAUD = getScaledBaudRate(uart_peripheral->baud_rate);
+    USART_t * USARTxREG = (USART_t *) USART_BASE_ADDR + (USART_PERIPH_OFFSET * uart_peripheral->number);
+    USARTxREG->BAUD = getScaledBaudRate(uart_peripheral->baud_rate);
+    USARTxREG->CTRLB |= USART_TXEN_bm; // Enable USART1    
 }
 
 uint16_t public_getScaledBaudRate(uint32_t baud_rate)
