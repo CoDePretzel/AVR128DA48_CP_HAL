@@ -20,6 +20,7 @@ typedef struct
 }UART_DATA_t;
 
 const UART_DATA_t UART0_DEFAULT_VALUES = {0, 115200, false, 8, 1, true};
+const UART_DATA_t UART1_DEFAULT_VALUES = {1, 115200, false, 8, 1, true};
 
 
 // Private declarations and prototypes
