@@ -11,7 +11,7 @@ void UART_init(UART_DATA_t * uart_peripheral)
     {
         enable_rx_int = true;
     }    
-    USART_t * USARTxREGS = USART0 + (uart_periph_offset * uart_peripheral->number);
+    USART_t * USARTxREGS = USART0 + (uart_periph_offset * (uint8_t *)uart_peripheral->number);
     USARTxREGS->BAUD = getScaledBaudRate(uart_peripheral->baud_rate);
 }
 
