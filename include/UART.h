@@ -24,7 +24,7 @@ const UART_DATA_t UART1_DEFAULT_VALUES = {1, 115200, false, 8, 1, true};
 
 
 // Private declarations and prototypes
-static uint8_t * USART_BASE_ADDR = (uint8_t*) 0x0800; // start of USART memory mapped registers
+static uint16_t USART_BASE_ADDR = 0x0800; // start of USART memory mapped registers
 static uint8_t USART_PERIPH_OFFSET = 0x20; // Every 0x20, the next USART starts
 static uint8_t const USART_NORMAL_MODE = 16;
 static uint8_t const USART_CLK2X_MODE = 8;
